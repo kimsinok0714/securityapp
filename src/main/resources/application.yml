@@ -1,0 +1,26 @@
+
+spring:
+  application:
+    name: securityapp
+  # DB 연결 정보
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db_board?serverTimezone=Asia/Seoul&characterEncoding=utf8
+    username: react
+    password: 12345678
+
+  # JPA 설정
+  jpa:
+    hibernate:
+      ddl-auto: update   
+    # show-sql: true     # 콘솔에 출력
+    properties:
+      hibernate:       
+        format_sql: true
+
+
+# Logging
+logging:
+  level:
+    org.hibernate.SQL: debug             # SQL문 로그 출력
+    org.hibernate.orm.jdbc.bind: trace   # 중요 : 바인딩된 값 출력
