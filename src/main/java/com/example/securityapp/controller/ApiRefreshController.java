@@ -89,7 +89,7 @@ public class ApiRefreshController {
     private boolean checkTime(Integer exp) {
 
         // exp를 날짜로 변환
-        java.util.Date expDate = new java.util.Date((long)exp * 1000);
+        java.util.Date expDate = new java.util.Date((long)exp * 60 * 1000);
 
         long gap = expDate.getTime() - System.currentTimeMillis();  // 단위 : ms
 
