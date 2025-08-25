@@ -16,7 +16,7 @@ spring:
     # show-sql: true     # 콘솔에 출력
     properties:
       hibernate:       
-        format_sql: true
+        '[format_sql]': true
 
 
 # Logging
