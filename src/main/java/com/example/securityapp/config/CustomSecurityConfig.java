@@ -98,7 +98,7 @@ public class CustomSecurityConfig {
         // UsernamePasswordAuthenticationFilter 보다 JWTCheckFilter 를 먼저 수행한다.
         
         /* 
-         * 1. /api/v1/members/login 요청한 경우
+         * 1. /api/v1/members/login POSt 요청한 경우
          * - usernamePasswordAuthenticationFilter  필터를 사용하여 로그인 처리를 수행한다.
          * - UserDetailsService의 loadUserByUsername 메소드를 호출한다.
          * 2. /api/v1/items 요청한 경우
