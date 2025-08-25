@@ -22,6 +22,6 @@ spring:
 # Logging
 logging:
   level:
-    '[org.hibernate.SQL]': debug             # SQL문 로그 출력
-    '[org.hibernate.orm.jdbc.bind]': trace   # 중요 : 바인딩된 값 출력  
-    '[org.springframework.securityapp]': trace # Security Logging
+    '[org.hibernate.SQL]': debug                # SQL문 로그 출력
+    '[org.hibernate.orm.jdbc.bind]': trace      # 중요 : 바인딩된 값 출력  
+    '[org.springframework.securityapp]': trace  # Security Logging
