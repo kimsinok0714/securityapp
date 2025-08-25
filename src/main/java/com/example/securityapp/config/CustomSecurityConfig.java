@@ -84,8 +84,8 @@ public class CustomSecurityConfig {
         // UsernamePasswordAuthenticationFilter가 실행되어 로그인 요청 처리.
         http.formLogin(config -> {  // 로그인 관련 설정
             //username, password
-            config.loginPage("/api/v1/members/login");         //  로그인 폼  지정 GET
-			config.loginProcessingUrl("/api/member/login");    //  POST
+            config.loginPage("/api/v1/members/login");         //  로그인 폼 처리,  GET
+			config.loginProcessingUrl("/api/member/login");    //  로그인 요청 처리,  POST
             // config.usernameParameter("email");
             // config.passwordParameter("pwd");
             config.successHandler(new ApiLoginSuccessHandler());      
