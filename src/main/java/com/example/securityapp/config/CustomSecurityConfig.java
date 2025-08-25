@@ -72,7 +72,7 @@ public class CustomSecurityConfig {
 
 
         // CSRF 비활성화
-        http.csrf(config -> config.disable());
+        http.csrf(csrf -> csrf.disable());
 
 
         // 세션 비활성화
