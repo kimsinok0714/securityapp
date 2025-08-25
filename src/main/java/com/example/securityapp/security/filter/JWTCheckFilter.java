@@ -27,7 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 //    UsernamePasswordAuthenticationToken 인증 객체를 생성하여 SecurityContext에 저장한다.
 
 
-@Component
+@Component  //?
 @Slf4j
 public class JWTCheckFilter extends OncePerRequestFilter { // OncePerRequestFilter : HTTP 요청 마다 실행되도록 보장되는 필터를 구현
 
