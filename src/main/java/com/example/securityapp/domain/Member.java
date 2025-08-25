@@ -40,6 +40,7 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private List<MemberRole> roles = new ArrayList<>();
 
+    // 비즈니스 메소드
     
     // 권한 추가
     public void addRoles(MemberRole memberRole) {
@@ -53,7 +54,6 @@ public class Member {
         this.roles.clear();
     }
 
-    // 비즈니스 메소드
     
     public void changePw(String password) {
         this.password = password;
