@@ -5,17 +5,14 @@ package com.example.securityapp.service;
 import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
-
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 import com.example.securityapp.domain.Member;
 import com.example.securityapp.dto.MemberDto;
 import com.example.securityapp.repository.MemberRepository;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -33,8 +30,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     private final MemberRepository memberRepository;
 
 
-
-    // 인증된 사용자 정보(Principal)를 반환한다.
+    // 인증된 사용자 정보 (UserDetails)를 반환한다.
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
