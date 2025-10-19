@@ -83,11 +83,14 @@ public class CustomSecurityConfig {
         // 폼 기반 로그인 요청 처리 (POST) 
         // UsernamePasswordAuthenticationFilter가 실행되어 로그인 요청 처리.
         http.formLogin(config -> {  // 로그인 관련 설정
-            //username, password
-            //config.loginPage("/api/v1/members/login");         //  로그인 폼 처리,  GET
+            // username, password
+            // http://localhost:8080/login 요청하면 로그인 폼을 보여준다.
+
+            //RESTFul API인 경우 로그인 페이지를 따로 사용하지 않고, 로그인 요청을 처리만 하므로 주석 처리하는 것이 일반적입니다.
+            //config.loginPage("/api/v1/members/login");            
 			config.loginProcessingUrl("/api/member/login");      //  로그인 요청 처리,  POST
-            config.usernameParameter("email");
-            config.passwordParameter("pwd");
+            config.usernameParameter("email");                   // parameter 변경 username => email
+            config.passwordParameter("pwd");                     // password 변경  password => pwd
             config.successHandler(new ApiLoginSuccessHandler());      
             config.failureHandler(new ApiLoginFailHandler());
         });
