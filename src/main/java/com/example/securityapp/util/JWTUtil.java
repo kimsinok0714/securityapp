@@ -3,11 +3,8 @@ package com.example.securityapp.util;
 import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.Map;
-
 import javax.crypto.SecretKey;
-
 import com.example.securityapp.exception.CustomJWTException;
-
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.InvalidClaimException;
 import io.jsonwebtoken.JwtException;
@@ -17,7 +14,7 @@ import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
 
 /*
-  * 1. JWT 토큰 발행
+  * 1. JWT 토큰 생성
   * 2. JWT 토큰 검증
   * 3. 반드시 키 값은 반드시 30자 이상 사용할 것 
   # 4. 반드시 jjwt library 0.11.5 version 사용할 것
@@ -41,7 +38,7 @@ public class JWTUtil {
         SecretKey key = null;
 
         try {
-             // HMAC-SHA algorithms 
+             // HMAC-SHA algorithms 사용하여 서명에 사용할 비밀키를 생성한다.
              key = Keys.hmacShaKeyFor(JWTUtil.key.getBytes("UTF-8"));
             
         } catch (Exception ex) {
