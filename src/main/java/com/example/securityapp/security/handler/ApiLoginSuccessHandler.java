@@ -37,14 +37,15 @@ public class ApiLoginSuccessHandler implements AuthenticationSuccessHandler {
 
         // JWT Access Token, JWT Refresh Token 생성
         String accessToken = JWTUtil.generateToken(claims, 10); // 10분
-
+        
+        // Refresh Token  생성 : Access Token 재발급 편의성 제공 목적 사용
         String refreshToken = JWTUtil.generateToken(claims, 60 * 24); // 1일
 
 
         // 추가 정보 : Access Token, Refresh Token(교환권)
         // 토큰 기반의 데이터 전송의 문제는 Hooking이므로 유효 시간을 짧게 
         claims.put("accessToken", accessToken);
-
+        
         claims.put("refreshToken", refreshToken);
 
 
