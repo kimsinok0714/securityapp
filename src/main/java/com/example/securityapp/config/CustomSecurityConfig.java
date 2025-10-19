@@ -85,7 +85,7 @@ public class CustomSecurityConfig {
         http.formLogin(config -> {  // 로그인 관련 설정
             //username, password
             //config.loginPage("/api/v1/members/login");         //  로그인 폼 처리,  GET
-			config.loginProcessingUrl("/api/member/login");    //  로그인 요청 처리,  POST
+			config.loginProcessingUrl("/api/member/login");      //  로그인 요청 처리,  POST
             config.usernameParameter("email");
             config.passwordParameter("pwd");
             config.successHandler(new ApiLoginSuccessHandler());      
