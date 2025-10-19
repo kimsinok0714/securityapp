@@ -7,7 +7,6 @@ import com.example.securityapp.exception.CustomJWTException;
 import com.example.securityapp.util.JWTUtil;
 import lombok.extern.slf4j.Slf4j;
 import java.util.Map;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -48,17 +47,17 @@ public class ApiRefreshController {
         log.info("Refresh Token Claims : {}", claims);
 
         // 새로운 Access Token 생성        
-        String newAccessToken = JWTUtil.generateToken(claims, 10);
+        String newAccessToken = JWTUtil.generateToken(claims, 10); // 10분
 
 
         // 3. Refresh Token이 만료 시간을 체크한 후 만료 시간이 1시간 미만인 경우 Refresh Token을 생성
         //    만료 시간이 충분한 경우 기존 Refresh Token을 전송
 
         // iat : Refresh Token 발행 시간
-        // exp : Refresh Token 만료 시간
+        // exp : Refresh Token 만료 시간 : 단위 초
 
         log.info("exp : {}", claims.get("exp"));
-        log.info("exp(Integer) : {}", (Integer)claims.get("exp"));
+        log.info("exp(Integer) : {}", (Integer)claims.get("exp"));  
         
         String newRefreshToken = checkTime((Integer)claims.get("exp")) == true ? JWTUtil.generateToken(claims, 60 * 24) : refreshToken;
 
@@ -86,7 +85,7 @@ public class ApiRefreshController {
     }
 
     // Refresh Token의 만료 시간이 1시간 미만인지 여부 확인
-    private boolean checkTime(Integer exp) {  // 초단위
+    private boolean checkTime(Integer exp) {  // 초 단위
 
         // 1. 초 → 밀리초 변환해서 Date 객체 생성
         //java.util.Date expDate = new java.util.Date((long)exp * 60 * 1000);
