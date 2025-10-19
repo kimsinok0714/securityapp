@@ -48,7 +48,7 @@ public class JWTUtil {
         String jwtStr = Jwts.builder()
                             .setHeader(Map.of("typ", "JWT"))    // 헤더
                             .setClaims(claims)                  // JWT 페이로드 : 사용자 인증 정보
-                            .setIssuedAt(Date.from(ZonedDateTime.now().toInstant())) // JWT 발행 시간
+                            .setIssuedAt(Date.from(ZonedDateTime.now().toInstant())) // JWT 발급시간, 현재 시간 타임존을 UTC 변경하고 Date 객체로 변환
                             .setExpiration(Date.from(ZonedDateTime.now().plusMinutes(min).toInstant()))  // JWT 만료 시간
                             .signWith(key)  // JWT 서명에 사용되는 비밀 키
                             .compact();
@@ -65,8 +65,7 @@ public class JWTUtil {
 
         try {
             // 비밀 키의 역할
-            // JWT 생성 시 서명(Signature)을 생성하는 데 사용.
-            // 검증 시 서명이 유효한지 확인하는 데 사용.
+            // JWT 토큰을 검증하려면 JWT 토큰 생성할때 서명(Signature)에 사용된 비밀키가 필요합니다.
             SecretKey key = Keys.hmacShaKeyFor(JWTUtil.key.getBytes("UTF-8"));
 
             // JWT 토큰 검증을 수행하기 위해서 Parser 생성
@@ -90,9 +89,6 @@ public class JWTUtil {
         }  
         return claim;
     }
-
-
-
 
 }
 
