@@ -86,13 +86,16 @@ public class ApiRefreshController {
     }
 
     // Refresh Token의 만료 시간이 1시간 미만인지 여부 확인
-    private boolean checkTime(Integer exp) {
+    private boolean checkTime(Integer exp) {  // 초단위
 
-        // exp를 날짜로 변환
-        java.util.Date expDate = new java.util.Date((long)exp * 60 * 1000);
-
+        // 1. 초 → 밀리초 변환해서 Date 객체 생성
+        //java.util.Date expDate = new java.util.Date((long)exp * 60 * 1000);
+        java.util.Date expDate = new java.util.Date(exp * 1000L);
+        
+        //2. 현재 시각과의 차이 계산 (ms)
         long gap = expDate.getTime() - System.currentTimeMillis();  // 단위 : ms
-
+        
+        // 3. 밀리초 → 분으로 변환
         long leftmin = gap / (1000 * 60);  // 단위  : minute
     
         return leftmin < 60;
@@ -100,7 +103,6 @@ public class ApiRefreshController {
 
 
 }
-
 
 
 
