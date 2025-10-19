@@ -48,7 +48,7 @@ public class JWTUtil {
         String jwtStr = Jwts.builder()
                             .setHeader(Map.of("typ", "JWT"))    // 헤더
                             .setClaims(claims)                  // JWT 페이로드 : 사용자 인증 정보
-                            .setIssuedAt(Date.from(ZonedDateTime.now().toInstant())) // JWT 발급시간, 현재 시간 타임존을 UTC 변경하고 Date 객체로 변환
+                            .setIssuedAt(Date.from(ZonedDateTime.now().toInstant())) // JWT 발급시간, 현재 시간(시스템 타임존)을 UTC 변경하고 Date 객체로 변환 (초단위)
                             .setExpiration(Date.from(ZonedDateTime.now().plusMinutes(min).toInstant()))  // JWT 만료 시간
                             .signWith(key)  // JWT 서명에 사용되는 비밀 키
                             .compact();
