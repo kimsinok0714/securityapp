@@ -90,7 +90,7 @@ public class CustomSecurityConfig {
             //config.loginPage("/api/v1/members/login");            
 			config.loginProcessingUrl("/api/member/login");      //  로그인 요청 처리,  POST
             config.usernameParameter("email");                   // parameter 변경 username => email
-            config.passwordParameter("pwd");                     // password 변경  password => pwd
+            config.passwordParameter("passwowrd");                  
             config.successHandler(new ApiLoginSuccessHandler());      
             config.failureHandler(new ApiLoginFailHandler());
         });
