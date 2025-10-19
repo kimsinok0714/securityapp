@@ -44,7 +44,7 @@ public class MemberDto extends User {
 
         Map<String, Object> map = new HashMap<>();
         map.put("email", email);
-        map.put("password", password);
+        //map.put("password", password);
         map.put("nickname", nickname);
         map.put("roleNames", roleNames);
         
