@@ -101,14 +101,15 @@ public class CustomSecurityConfig {
         // UsernamePasswordAuthenticationFilter 보다 JWTCheckFilter 를 먼저 수행한다.
         
         /* 
-         * 1. /api/v1/members/login POSt 요청한 경우
-         * - usernamePasswordAuthenticationFilter  필터를 사용하여 로그인 처리를 수행한다.
+         * 1. /api/v1/members/login POST 요청한 경우
+         * - usernamePasswordAuthenticationFilter  필터를 사용하여 로그인 요청 처리를 수행한다.
          * - UserDetailsService의 loadUserByUsername 메소드를 호출한다.
          * 2. /api/v1/items 요청한 경우
          * - JWTCheckFilter 에서 SecurityContextHolder에 인증 정보가 저장되므로, 
          * - 이후 UsernamePasswordAuthenticationFilter는 별도의 추가 인증을 수행하지 않고 통과된다.
          */
 
+		//사용자가 JWT 토큰을 가지고 있다면 굳이 로그인하지 않아도 인증이 완료되기 때문입니다.
         http.addFilterBefore(new JWTCheckFilter(), UsernamePasswordAuthenticationFilter.class);  
 
 
