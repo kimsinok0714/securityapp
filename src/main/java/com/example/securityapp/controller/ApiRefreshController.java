@@ -52,7 +52,7 @@ public class ApiRefreshController {
         //    만료 시간이 충분한 경우 기존 Refresh Token을 전송
 
         // iat : Refresh Token 발행 시간
-        // exp : Refresh Token 만료 시간 : 단위 초
+        // exp : Refresh Token 만료 시간 
 
         log.info("exp : {}", claims.get("exp"));
         log.info("exp(Integer) : {}", (Integer)claims.get("exp"));  
@@ -81,7 +81,7 @@ public class ApiRefreshController {
     }
 
     // Refresh Token의 만료 시간이 1시간 미만인지 여부 확인
-    private boolean checkTime(Integer exp) {  // 초 단위
+    private boolean checkTime(Integer exp) {  // 초 단위 시간
 
         // 1. 초 → 밀리초 변환해서 Date 객체 생성
         //java.util.Date expDate = new java.util.Date((long)exp * 60 * 1000);
