@@ -73,7 +73,6 @@ public class JWTCheckFilter extends OncePerRequestFilter { // OncePerRequestFilt
             String accessToken = authHeader.substring(7);
 
             Map<String, Object> claims = JWTUtil.validateToken(accessToken);
-
             log.info("claims : {}", claims);
 
             String email = (String)claims.get("email");
@@ -83,7 +82,6 @@ public class JWTCheckFilter extends OncePerRequestFilter { // OncePerRequestFilt
             List<String> roleNames = (List<String>)claims.get("roleNames");
 
             MemberDto memberDto = new MemberDto(email, password, nickname, roleNames);  // Principal
-
             log.info("memberDto : {}", memberDto);
             
             /*
@@ -101,36 +99,25 @@ public class JWTCheckFilter extends OncePerRequestFilter { // OncePerRequestFilt
              
 
         } catch (Exception e) {
-            // 인증에 실패한 경우
+      
             log.error("Error : {}", e.getMessage());
 
             Throwable cause = e.getCause();            
             if (cause instanceof AccessDeniedException) {
-              // jsonStr = gson.toJson(Map.of("error", "ERROR_ACCESS_DENIED"));
-              throw (AccessDeniedException)cause;
+                // 유효한 JWT지만, 권한이 부족한 경우              
+                throw (AccessDeniedException)cause;
+                
             } else {
-
                 Gson gson = new Gson();
-
-                String jsonStr = gson.toJson(Map.of("error", "ERROR_ACCESS_TOKEN"));
+                String jsonStr = gson.toJson(Map.of("error", "ERROR_ACCESS_TOKEN"));                
                 
                 response.setContentType("application/json; charset=UTF-8");
-
-                PrintWriter pw = response.getWriter();
-                
-                pw.println(jsonStr);
-    
+                PrintWriter pw = response.getWriter();                
+                pw.println(jsonStr);    
                 pw.close();
 
             }
-
-           
-            
-
-        }
-        
+        }        
     }
-
-    
 
 }
