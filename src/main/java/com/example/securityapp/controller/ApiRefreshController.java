@@ -12,13 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 
 
-// Rrefresh Token 발행
+// Access Token, Rrefresh Token 재발급
 
 @RestController
 @RequestMapping("/api/v1")
 @Slf4j
-public class ApiRefreshController {
-    
+public class ApiRefreshController {    
 
     // Request Header : Authorization
     // QueryString : refreshToken
@@ -32,7 +31,6 @@ public class ApiRefreshController {
         if (authHeader == null || authHeader.length() < 7) {
             throw new CustomJWTException("INVALID_AUTH");
         }
-
 
         // 1. Access Token이 만료되지 않았다면 기존 Access Token과 Refresh Token을 그대로 전송
         String accessToken = authHeader.substring(7);
@@ -69,7 +67,6 @@ public class ApiRefreshController {
     }
     
 
-
     // 액세스 토큰이 만료 여부 확인
     private boolean checkExpiredToken(String accessToken) {
 
@@ -80,7 +77,6 @@ public class ApiRefreshController {
                 return true;
             }
         }
-
         return false;
     }
 
