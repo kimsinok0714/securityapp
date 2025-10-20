@@ -14,12 +14,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
 import com.example.securityapp.security.filter.JWTCheckFilter;
 import com.example.securityapp.security.handler.ApiLoginFailHandler;
 import com.example.securityapp.security.handler.ApiLoginSuccessHandler;
 import com.example.securityapp.security.handler.CustomAccessDeniedHandler;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -111,7 +109,6 @@ public class CustomSecurityConfig {
 
 		//사용자가 JWT 토큰을 가지고 있다면 굳이 로그인하지 않아도 인증이 완료되기 때문입니다.
         http.addFilterBefore(new JWTCheckFilter(), UsernamePasswordAuthenticationFilter.class);  
-
 
         // Spring Security에서 발생하는 권한 관련 예외를 처리
         http.exceptionHandling(config -> {
