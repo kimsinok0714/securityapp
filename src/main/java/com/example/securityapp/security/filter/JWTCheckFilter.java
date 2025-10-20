@@ -40,17 +40,17 @@ public class JWTCheckFilter extends OncePerRequestFilter { // OncePerRequestFilt
     // Preflight 요청 (CORS Preflight Request)
     // 웹 브라우저가 CORS 정책을 따르는 서버에 HTTP 요청을 보내기 전에, 요청이 허용될지를 확인하기 위해 사전에 보내는 OPTIONS 요청입니다.  
     
+    // 해당 요청(request)에 대해 필터를 적용할지 말지를 결정합니다.
+    // /login, /signup
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
 
         String path = request.getRequestURI();
-
         log.info("Request URI : {}", path);
 
         if (request.getMethod().equalsIgnoreCase("OPTIONS") || path.startsWith("/api/v1/members/")) {
             return true;
-        }        
-        
+        }                
         return false;
     }
     
@@ -101,17 +101,13 @@ public class JWTCheckFilter extends OncePerRequestFilter { // OncePerRequestFilt
              
 
         } catch (Exception e) {
-
             // 인증에 실패한 경우
             log.error("Error : {}", e.getMessage());
 
-            Throwable cause = e.getCause();
-            
+            Throwable cause = e.getCause();            
             if (cause instanceof AccessDeniedException) {
-
               // jsonStr = gson.toJson(Map.of("error", "ERROR_ACCESS_DENIED"));
               throw (AccessDeniedException)cause;
-
             } else {
 
                 Gson gson = new Gson();
