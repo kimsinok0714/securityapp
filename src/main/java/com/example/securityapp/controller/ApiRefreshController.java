@@ -24,9 +24,9 @@ public class ApiRefreshController {
     @GetMapping("/members/refresh")
     public Map<String, Object> refresh(@RequestHeader("Authorization") String authHeader, @RequestParam("refreshToken") String refreshToken) {
 
-        if (refreshToken == null) {            
-            throw new CustomJWTException("NULL_REFRESH");
-        }
+        // if (refreshToken == null) {            
+        //     throw new CustomJWTException("NULL_REFRESH");
+        // }
 
         if (authHeader == null || authHeader.length() < 7) {
             throw new CustomJWTException("INVALID_AUTH");
